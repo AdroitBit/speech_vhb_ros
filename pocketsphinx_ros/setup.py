@@ -1,6 +1,6 @@
 from setuptools import setup
 
-package_name = 'pocketsphinx'
+package_name = 'pocketsphinx_ros'
 
 setup(
     name=package_name,
@@ -20,7 +20,7 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            'test = pocketsphinx.test:main'
+            'test = pocketsphinx_ros.test:main'
         ],
     },
 )
