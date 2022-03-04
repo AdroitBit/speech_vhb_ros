@@ -15,8 +15,11 @@ class PocketSphinx(Node):
         self.sub_tts=self.create_subscription(String, '/speech_tts/input', self.tts_callback, 10)
     def tts_callback(self,msg):
         msg=msg.data
-        if msg[-1]=='.':
-            msg=msg[:-1]
+        try:
+            if msg[-1]=='.':
+                msg=msg[:-1]
+        except IndexError as e:
+            pass
         for extension in [".wav",".mp3"]:
             dir=get_package_share_directory('pocketsphinx_ros')+'/glados-pre-sound/'
             fn=msg.lower()+".wav"

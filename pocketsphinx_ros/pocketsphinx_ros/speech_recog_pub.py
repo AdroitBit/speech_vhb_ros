@@ -6,6 +6,7 @@ from std_msgs.msg import String
 import pyttsx3
 from playsound import playsound
 from ament_index_python.packages import get_package_share_directory
+import re
 
 
 
@@ -21,23 +22,32 @@ class PocketSphinx(Node):
         super().__init__('pocketsphinx_speech_pub_node')
         self.topic_recog='/speech_recognition/output'
         self.pub_recognizer = self.create_publisher(String, self.topic_recog, 10)
-        #self.pub_recognizer_timer = self.create_timer(
-        #    timer_period_sec=0.1,
-        #    self.recognition_timer_callback
-        #)
     def publish(self,msg):
         _msg=String()
         _msg.data=str(msg)
         self.pub_recognizer.publish(_msg)
     def start_recognition(self):
         for phrase in LiveSpeech():
-            self.publish(phrase)
+            #self.publish(phrase)
+            phrase=str(phrase)
+            self.publish(self.map_phrase(phrase))
             self.get_logger().info(f'Publishing "{phrase}" to {self.topic_recog}')
             break
+    def map_phrase(self,s):
+        s=re.sub("want a one","water",s)
+        s=re.sub('why that is',"water please",s)
+        s=re.sub('wanda',"water",s)
+        s=re.sub('one of these','water please',s)
+        s=re.sub('what the us','water please',s)
+        s=re.sub('watch the new','water please',s)
+        s=re.sub('what a', 'water', s)
+        s=re.sub('what a reason', 'water please', s)
+        return s
 
 def main(args=None):
     rclpy.init(args=args)
     node=PocketSphinx()
+    print("Ready to listen")
     try:
         while True:
             node.start_recognition()

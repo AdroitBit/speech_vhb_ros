@@ -34,3 +34,11 @@ Here is your drink.
 [Afer thank you]
 
 You're welcome.
+
+
+# Node
+- pocketsphinx_speech_pub_node : `$ ros2 run pocketsphinx_ros speech_recog_pub`
+    - get sound from microphone.do speech recognition and publish to topic `/speech_recognition/output`.
+
+- pocketsphinx_tts_node : `$ ros2 run pocketsphinx_ros tts`
+    - get string from topic `/speech_tts/input` and do text to speech with that string.

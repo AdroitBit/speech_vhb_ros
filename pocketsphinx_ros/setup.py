@@ -13,7 +13,8 @@ setup(
             ['resource/' + package_name]),
         ('share/' + package_name, ['package.xml']),
         ('share/'+package_name+'/glados-pre-sound',glob('glados-pre-sound/*.wav')),
-        ('share/' + package_name, glob('launch/*.launch.py'))
+        ('share/' + package_name, glob('launch/*.launch.py')),
+        (f'share/{package_name}/config', glob('config/*.yaml'))
     ],
     install_requires=['setuptools'],
     zip_safe=True,
