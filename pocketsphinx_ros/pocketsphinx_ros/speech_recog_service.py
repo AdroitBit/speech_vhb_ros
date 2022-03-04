@@ -8,6 +8,8 @@ from playsound import playsound
 from ament_index_python.packages import get_package_share_directory
 import re
 
+from pocketsphinx_ros.srv import SpeechRecog
+
 
 
 ##########################
@@ -20,7 +22,7 @@ class PocketSphinx(Node):
     def __init__(self):
         super().__init__('pocketsphinx_speech_service_node')
         self.topic_recog='/speech_recognition/output'
-        self.srv = self.create_service(String, self.topic_recog, 10)
+        self.srv = self.create_service(SpeechRecog, 'speech_recog_output',self.recog_callback)
     def publish(self,msg):
         _msg=String()
         _msg.data=str(msg)
