@@ -21,7 +21,7 @@ pocketsphinx is a speech recognition library for Python. So this ROS package wil
 
 
 ## testing
-[Start command with what?]
+[robot come here]
 
 Hello,What would you like to drink?
 
@@ -31,7 +31,7 @@ Ok,I will be back with your drink.
 
 Here is your drink.
 
-[Afer thank you]
+[Thank you]
 
 You're welcome.
 

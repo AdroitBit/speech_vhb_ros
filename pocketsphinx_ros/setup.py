@@ -27,6 +27,7 @@ setup(
         'console_scripts': [
             'test = pocketsphinx_ros.test:main',
             'speech_recog_pub = pocketsphinx_ros.speech_recog_pub:main',
+            'speech_recog_service = pocketsphinx_ros.speech_recog_service:main',
             'tts = pocketsphinx_ros.tts:main',
             'cmd_vel = pocketsphinx_ros.cmd_vel:main',
         ]
