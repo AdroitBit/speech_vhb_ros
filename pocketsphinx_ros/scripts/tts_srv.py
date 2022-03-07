@@ -1,13 +1,13 @@
+#!/usr/bin/env python3
+
 import os
 from pocketsphinx import LiveSpeech
-import rclpy
-from rclpy.node import Node
+import rospy
 from std_msgs.msg import String
 import pyttsx3
 from playsound import playsound
-from ament_index_python.packages import get_package_share_directory
 
-from pocketsphinx_ros_interfaces.srv import TTS
+from pocketsphinx_ros.srv import TTS
 
 import re
 import time
@@ -40,27 +40,14 @@ def perform_tts(msg,tts_type='pico2wave'):
             fn=msg.lower()+".wav"
             if os.path.exists(dir+fn):
                 playsound(dir+fn)
+def tts_callback(req):
+    rospy.loginfo(f'speaking "{msg}"')
+    perform_tts(req.sentence)
+    return TTSResponse(True)
 
-
-class PocketSphinx(Node):
-    def __init__(self):
-        super().__init__('pocketsphinx_tts_node')
-        self.srv=self.create_service(TTS, 'tts_input', self.tts_callback)
-        self.done_speaking=True
-    def tts_callback(self,req,resp):
-        msg=req.sentence
-        self.get_logger().info(f'speaking "{msg}"')
-        perform_tts(msg)
-        resp.done_speaking=True
-        return resp
-
-def main(args=None):
-    rclpy.init(args=args)
-    node=PocketSphinx()
-    print("Send request to tts_input for text to speech activation.")
-
-    rclpy.spin(node)
-    node.destroy_node()
-    rclpy.shutdown()
 if __name__=='__main__':
-    main()
+    rospy.init_node('pocketsphinx_tts_node')
+    s = rospy.Service('tts_input', TTS, lambda req: perform_tts(req.msg,req.tts_type))
+    print("Send request to tts_output for text-to-speech activation.")
+
+    rospy.spin()
