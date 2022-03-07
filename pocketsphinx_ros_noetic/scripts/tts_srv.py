@@ -7,7 +7,7 @@ from std_msgs.msg import String
 import pyttsx3
 from playsound import playsound
 
-from pocketsphinx_ros.srv import TTS,TTSResponse
+from pocketsphinx_ros.srv import TTS
 
 import re
 import time
@@ -41,13 +41,13 @@ def perform_tts(msg,tts_type='pico2wave'):
             if os.path.exists(dir+fn):
                 playsound(dir+fn)
 def tts_callback(req):
-    rospy.loginfo(f'speaking "{req.sentence}"')
+    rospy.loginfo(f'speaking "{msg}"')
     perform_tts(req.sentence)
     return TTSResponse(True)
 
 if __name__=='__main__':
     rospy.init_node('pocketsphinx_tts_node')
-    s = rospy.Service('tts_input', TTS,tts_callback )
+    s = rospy.Service('tts_input', TTS, lambda req: perform_tts(req.msg,req.tts_type))
     print("Send request to tts_output for text-to-speech activation.")
 
     rospy.spin()
