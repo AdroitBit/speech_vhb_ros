@@ -14,7 +14,8 @@ setup(
         ('share/' + package_name, ['package.xml']),
         ('share/'+package_name+'/glados-pre-sound',glob('glados-pre-sound/*.wav')),
         ('share/' + package_name, glob('launch/*.launch.py')),
-        (f'share/{package_name}/config', glob('config/*.yaml'))
+        (f'share/{package_name}/config', glob('config/*.yaml')),
+        #(f'{get_package_share_directory("example_interfaces")}/srv', glob('srv/*.srv')),
     ],
     install_requires=['setuptools'],
     zip_safe=True,
@@ -26,9 +27,10 @@ setup(
     entry_points={
         'console_scripts': [
             'test = pocketsphinx_ros.test:main',
-            'speech_recog_pub = pocketsphinx_ros.speech_recog_pub:main',
-            'speech_recog_service = pocketsphinx_ros.speech_recog_service:main',
+            'speech_recog_publisher = pocketsphinx_ros.speech_recog_pub:main',
+            'speech_recog_srv = pocketsphinx_ros.speech_recog_srv:main',
             'tts = pocketsphinx_ros.tts:main',
+            'tts_srv = pocketsphinx_ros.tts_srv:main',
             'cmd_vel = pocketsphinx_ros.cmd_vel:main',
         ]
     }
