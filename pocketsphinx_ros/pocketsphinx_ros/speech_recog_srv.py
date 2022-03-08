@@ -17,26 +17,13 @@ import threading
 ##########################
 # The service can be requested for returned speech
 ##########################
-def map_phrase(s):
-    s=re.sub("want a one","water",s)
-    s=re.sub('why that is',"water please",s)
-    s=re.sub('wanda',"water",s)
-    s=re.sub('one of these','water please',s)
-    s=re.sub('what the us','water please',s)
-    s=re.sub('watch the new','water please',s)
-    s=re.sub('what a', 'water', s)
-    s=re.sub('what a reason', 'water please', s)
-    s=re.sub('comair','come here',s)
-    s=re.sub('calm yeah why','come here why',s)
-    s=re.sub('i\'m year','come here',s)
-    s=re.sub('let a couple of','like a cup of',s)
-    s=re.sub('i would let it out on what the','i would like the cup of water',s)
-    s=re.sub('i had a couple want to','give me the cup of water',s)
-    return s
+
 
 def perform_recog():
     for phrase in LiveSpeech():
-        return map_phrase(str(phrase))
+        #using in noetic branch
+        #return map_phrase(str(phrase)) 
+        return str(phrase)
 
 class PocketSphinx(Node):
     def __init__(self,wtf=False):
