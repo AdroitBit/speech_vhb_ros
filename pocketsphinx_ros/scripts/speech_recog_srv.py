@@ -10,7 +10,7 @@ from pocketsphinx_ros.srv import SpeechRecog,SpeechRecogResponse
 import rospy
 
 def recog_callback(req):
-    rospy.loginfo(f'Requested...')
+    rospy.loginfo("Requested...")
     for phrase in LiveSpeech():
         phrase=map_phrase(phrase)
         rospy.loginfo('Response to some client with "%s"', phrase)
