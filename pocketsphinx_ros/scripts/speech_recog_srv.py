@@ -6,15 +6,20 @@ from std_msgs.msg import String
 import pyttsx3
 import re
 from playsound import playsound
-from pocketsphinx_ros.srv import SpeechRecog,SpeechRecogResponse
+
 import rospy
+rospy.init_node('pocketsphinx_speech_srv_node')
+from pocketsphinx_ros.srv import SpeechRecog,SpeechRecogResponse
 
 def recog_callback(req):
     rospy.loginfo("Requested...")
-    for phrase in LiveSpeech():
+    speech=LiveSpeech()
+    print('test')
+    for phrase in speech:
+        print("working here")
         phrase=map_phrase(phrase)
         rospy.loginfo('Response to some client with "%s"', phrase)
-        return SpeechRecogResponse(phrase)
+        return SpeechRecogResponse(str(phrase))
 def map_phrase(s):
     s=re.sub("want a one","water",s)
     s=re.sub('why that is',"water please",s)
@@ -33,7 +38,7 @@ def map_phrase(s):
     return s
 
 if __name__ == "__main__":
-    rospy.init_node('pocketsphinx_speech_srv_node')
+    
     s = rospy.Service('speech_recog_output', SpeechRecog, recog_callback )
     print("Send request to speech_recog_output for speech recognition activation.")
 
