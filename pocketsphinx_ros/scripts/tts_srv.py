@@ -5,7 +5,7 @@ from pocketsphinx import LiveSpeech
 import rospy
 from std_msgs.msg import String
 import pyttsx3
-from playsound import playsound
+#from playsound import playsound
 
 from pocketsphinx_ros.srv import TTS,TTSResponse
 
@@ -13,11 +13,19 @@ import re
 import time
 
 
+#playsound can be
+# $ ffplay -nodisp -autoexit -loglevel quiet /tmp/test.wav
+# $ play -b 16 --endian little -r 16000 /tmp/test.wav
+# $ aplay
+
+def playsound(f):
+    os.system("aplay "+f)
+
 def perform_tts(msg,tts_type='pico2wave'):
     if tts_type=='espeak':
         os.system(f'espeak "{msg}" -s70 -v en-us')
     elif tts_type=='pico2wave':
-
+        
         ss=re.split('(\.|\,|\?)', msg)
         for s in ss:
             if s=='.':
@@ -28,7 +36,7 @@ def perform_tts(msg,tts_type='pico2wave'):
                 time.sleep(0.3)
             else:
                 os.system(f'pico2wave -l en-US -w /tmp/test.wav "{s}"')
-                playsound(f'/tmp/test.wav')
+                playsound('/tmp/test.wav')
     elif tts_type=='festival':
         os.system(f'echo "{msg}" | festival --tts')
     else:
@@ -40,7 +48,7 @@ def perform_tts(msg,tts_type='pico2wave'):
                 playsound(dir+fn)
 def tts_callback(req):
     rospy.loginfo(f'speaking "{req.sentence}"')
-    perform_tts(req.sentence)
+    perform_tts(req.sentence,tts_type='pico2wave')
     return TTSResponse(True)
 
 if __name__=='__main__':
