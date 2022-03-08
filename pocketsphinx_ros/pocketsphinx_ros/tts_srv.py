@@ -46,7 +46,7 @@ def perform_tts(msg,tts_type='pico2wave'):
 class PocketSphinx(Node):
     def __init__(self):
         super().__init__('pocketsphinx_tts_node')
-        self.srv=self.create_service(TTS, 'tts_input', self.tts_callback)
+        self.srv=self.create_service(TTS, 'tts/input', self.tts_callback)
         self.done_speaking=True
     def tts_callback(self,req,resp):
         msg=req.sentence

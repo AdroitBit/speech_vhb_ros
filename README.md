@@ -14,6 +14,7 @@ In serious of Working in Progress
 - rhvoice
 - festival - `$ sudo apt-get install festival`
 - pico2wave - `$ sudo apt-get install libttspico-utils`
+- sox - `$ sudo apt-get install sox`
 
 
 
