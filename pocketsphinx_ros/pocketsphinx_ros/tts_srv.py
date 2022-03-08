@@ -20,14 +20,15 @@ def perform_tts(msg,tts_type='pico2wave'):
 
         ss=re.split('(\.|\,|\?)', msg)
         for s in ss:
-            if s.replace(" ", "").isalpha():
+            if s=='.':
+                time.sleep(0.2)
+            elif s==',':
+                time.sleep(0.1)
+            elif s=='?':
+                time.sleep(0.3)
+            else:
                 os.system(f'pico2wave -w /tmp/test.wav "{s}"')
                 playsound(f'/tmp/test.wav')
-            else:
-                if s=='.':
-                    time.sleep(0.2)
-                elif s==',':
-                    time.sleep(0.1)
 
         #os.system(f'pico2wave -l en-US -w /tmp/tts.wav "{msg}"')
         #playsound('/tmp/tts.wav')
