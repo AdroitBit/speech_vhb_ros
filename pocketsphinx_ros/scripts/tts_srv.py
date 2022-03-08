@@ -5,13 +5,13 @@ from pocketsphinx import LiveSpeech
 import rospy
 from std_msgs.msg import String
 import pyttsx3
+#This is working badly
 #from playsound import playsound
 
 from pocketsphinx_ros.srv import TTS,TTSResponse
 
 import re
 import time
-
 
 #playsound can be
 # $ ffplay -nodisp -autoexit -loglevel quiet /tmp/test.wav
@@ -20,6 +20,7 @@ import time
 
 def playsound(f):
     os.system("aplay "+f)
+    #os.system("ffplay -nodisp -autoexit -loglevel quiet -af \"atempo=1.0\" "+f)
 
 def perform_tts(msg,tts_type='pico2wave'):
     if tts_type=='espeak':
