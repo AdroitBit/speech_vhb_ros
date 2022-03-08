@@ -15,7 +15,7 @@ def recog_callback(req):
         phrase=map_phrase(phrase)
         rospy.loginfo('Response to some client with "%s"', phrase)
         return SpeechRecogResponse(phrase)
-def map_phrase(self,s):
+def map_phrase(s):
     s=re.sub("want a one","water",s)
     s=re.sub('why that is',"water please",s)
     s=re.sub('wanda',"water",s)
