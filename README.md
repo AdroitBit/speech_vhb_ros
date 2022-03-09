@@ -80,7 +80,9 @@ $ source /opt/ros/noetic/setup.bash && \
 
 ## State testing
 ```
-$ rosrun state_test test_cli.py
+$ source /opt/ros/noetic/setup.bash && \
+  source ~/ros_noetic_thing/pocketsphinx_ws/devel/setup.bash && \
+  rosrun state_test test_cli.py
 ```
 
 
