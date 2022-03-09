@@ -20,7 +20,18 @@ import threading
 
 
 def perform_recog():
-    for phrase in LiveSpeech():
+    model_path=get_package_share_directory('pocketsphinx_ros')+'/model'
+    speech = LiveSpeech(
+        verbose=False,
+        sampling_rate=16000,
+        buffer_size=2048,
+        no_search=False,
+        full_utt=False,
+        hmm=os.path.join(model_path, 'en-us'),
+        lm=os.path.join(model_path, 'en-us.lm.bin'),
+        dic=os.path.join(model_path, 'KU_Robocup-en-us.dict')
+    )
+    for phrase in speech:
         #using in noetic branch
         #return map_phrase(str(phrase)) 
         return str(phrase)

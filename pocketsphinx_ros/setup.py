@@ -15,6 +15,8 @@ setup(
         ('share/'+package_name+'/glados-pre-sound',glob('glados-pre-sound/*.wav')),
         ('share/' + package_name, glob('launch/*.launch.py')),
         (f'share/{package_name}/config', glob('config/*.yaml')),
+        (f'share/{package_name}/model', glob('model/*.dict')+glob('model/*.lm.bin')),
+        (f'share/{package_name}/model/en-us', glob('model/en-us/*')),
         #(f'{get_package_share_directory("example_interfaces")}/srv', glob('srv/*.srv')),
     ],
     install_requires=['setuptools'],
