@@ -17,6 +17,7 @@ But then ROS foxy working fine.No problem.That is the workaround for us.
 
 ## Installation
 ```
+source /opt/ros/noetic/setup.bash
 mkdir -p ~/ros_noetic_thing/pocketsphinx_ws/src
 cd ~/ros_noetic_thing/pocketsphinx_ws/src
 git clone -b noetic-devel https://github.com/VeryHardBit/pocketsphinx-ros2
@@ -24,6 +25,7 @@ cd ..
 catkin_make
 
 #You still need foxy version tho.
+source /opt/ros/foxy/setup.bash
 mkdir -p ~/ros_foxy_thing/pocketsphinx_ws/src
 cd ~/ros_foxy_thing/pocketsphinx_ws/src
 git clone -b foxy-devel https://github.com/VeryHardBit/pocketsphinx-ros2
@@ -37,7 +39,7 @@ colcon build
 ## Nodes
 - pocketsphinx_speech_srv_node (speech_recog_srv.py)
     - create service name `speech_recog_output`
-    - to run `rosrun pocketsphinx_ros speech_recog_srv`
+    - to run `$ rosrun pocketsphinx_ros speech_recog_srv`
     - to test `$ rosservice call /speech_recog_output pocketsphinx_ros_interfaces/srv/SpeechRecog {}`
 
 - pocketsphinx_tts_srv_node (tts_srv.py)
@@ -71,8 +73,9 @@ This is how it works step by step.
 
 ## Running (for tts)
 ```
-$ source /opt/ros/noetic/setup.bash
-$ rosrun pocketsphinx_ros tts_srv.py
+$ source /opt/ros/noetic/setup.bash && \
+  source ~/ros_noetic_thing/pocketsphinx_ws/devel/setup.bash && \
+  rosrun pocketsphinx_ros tts_srv.py
 ```
 
 
