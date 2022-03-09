@@ -20,11 +20,15 @@ But then ROS foxy working fine.No problem.That is the workaround for us.
 mkdir -p ~/ros_noetic_thing/pocketsphinx_ws/src
 cd ~/ros_noetic_thing/pocketsphinx_ws/src
 git clone -b noetic-devel https://github.com/VeryHardBit/pocketsphinx-ros2
+cd ..
+catkin_make
 
 #You still need foxy version tho.
 mkdir -p ~/ros_foxy_thing/pocketsphinx_ws/src
 cd ~/ros_foxy_thing/pocketsphinx_ws/src
 git clone -b foxy-devel https://github.com/VeryHardBit/pocketsphinx-ros2
+cd ..
+colcon build
 ```
 
 
@@ -45,7 +49,7 @@ git clone -b foxy-devel https://github.com/VeryHardBit/pocketsphinx-ros2
 ```
 #1st terminal
 $ source /opt/ros/foxy/setup.bash && \
-  source ~/ros_foxy_thing/pocketsphinx_ws/devel/setup.bash && \
+  source ~/ros_foxy_thing/pocketsphinx_ws/install/setup.bash && \
   ros2 run pocketsphinx_ros speech_recog_srv
 
 #2nd terminal
