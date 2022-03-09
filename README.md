@@ -15,6 +15,7 @@ In serious of Working in Progress
 - festival - `$ sudo apt-get install festival`
 - pico2wave - `$ sudo apt-get install libttspico-utils`
 - sox - `$ sudo apt-get install sox`
+- playsound - https://pypi.org/project/playsound/
 
 
 
