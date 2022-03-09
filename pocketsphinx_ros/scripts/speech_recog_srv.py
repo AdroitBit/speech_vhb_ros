@@ -39,7 +39,7 @@ def start_recog_callback(req):
         rate.sleep()
 
     sentence=open("/tmp/pocketsphinx_ros_comm.txt","r").read()
-    sentence=map_phrase(sentence)
+    #sentence=map_phrase(sentence)
     os.remove("/tmp/pocketsphinx_ros_comm.txt")
 
     
