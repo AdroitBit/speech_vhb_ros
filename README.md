@@ -71,7 +71,8 @@ This is how it works step by step.
 
 ## Running (for tts)
 ```
-
+$ source /opt/ros/noetic/setup.bash
+$ rosrun pocketsphinx_ros tts_srv.py
 ```
 
 
