@@ -78,6 +78,11 @@ $ source /opt/ros/noetic/setup.bash && \
   rosrun pocketsphinx_ros tts_srv.py
 ```
 
+## State testing
+```
+$ rosrun state_test test_cli.py
+```
+
 
 ## testing
 [robot come here]
