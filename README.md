@@ -24,6 +24,9 @@ In serious of Working in Progress
     - to run `ros2 run pocketsphinx_ros speech_recog_srv`
     - to test `$ ros2 service call /speech_recog_output pocketsphinx_ros_interfaces/srv/SpeechRecog {}`
 
+    - You can send request to this node.By creating "/tmp/pocketsphinx_ros_starter.txt" file. and You will get response from "/tmp/pocketsphinx_ros_comm.txt" file!
+        - This is using in noetic branch.To connect noetic to foxy.
+
     - also create subscriber and publisher( just in case you need it )
         - subscriber with topic `recognizer/foxy/start` (std_msgs/msg/Empty) for start speech recognition
         - create publisher with topic `recognizer/foxy/output` (std_msgs/msg/String) for obtaining speech recognition result
