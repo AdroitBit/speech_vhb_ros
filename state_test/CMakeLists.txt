@@ -159,7 +159,7 @@ include_directories(
 
 ## Mark executable scripts (Python etc.) for installation
 ## in contrast to setup.py, you can choose the destination
-catkin_install_python(PROGRAMS scripts/test_cli.py
+catkin_install_python(PROGRAMS scripts/test_cli.py scripts/test_loop_cli.py scripts/test_enter_cli.py
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 

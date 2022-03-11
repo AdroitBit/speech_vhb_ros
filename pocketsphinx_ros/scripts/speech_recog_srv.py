@@ -7,6 +7,10 @@ from std_msgs.msg import String
 from pocketsphinx import LiveSpeech
 import os
 import re
+
+scripts_path=os.path.dirname(__file__)
+
+
 def map_phrase(s):
     s=re.sub("want a one","water",s)
     s=re.sub('why that is',"water please",s)
