@@ -37,5 +37,4 @@ def listen_for(*words):
 if __name__=='__main__':
     print('Ready')
     while True:
-        w=listen_for('come','come here','good','tomohawk')
-        speak(f'heard {w}')
+        print(listen())

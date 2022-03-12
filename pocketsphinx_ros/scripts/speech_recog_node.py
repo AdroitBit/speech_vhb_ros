@@ -42,7 +42,7 @@ def start_recog_callback(req):
 
 
 if __name__=='__main__':
-    rospy.init_node('pocketsphinx_speech_srv_node')
+    rospy.init_node('speech_recog_node')
     print("Test")
     s = rospy.Service('recognizer/start', SpeechRecog, start_recog_callback )
     rospy.spin()

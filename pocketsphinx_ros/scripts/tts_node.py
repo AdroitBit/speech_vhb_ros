@@ -53,7 +53,7 @@ def tts_callback(req):
     return TTSResponse(True)
 
 if __name__=='__main__':
-    rospy.init_node('pocketsphinx_tts_node')
+    rospy.init_node('tts_node')
     s = rospy.Service('tts_input', TTS,tts_callback )
     print("Send request to tts_output for text-to-speech activation.")
 

@@ -36,8 +36,8 @@ def listen_for(*words):
 
 
 if __name__=='__main__':
-    speak("Speeh setup")
-    speak("Ready for commands")
+    rospy.init_node('state_test_node')
+    print("I'm ready")
     while True:
         w=listen_for('come','come here','good','tomohawk')
         if 'come' in w:
