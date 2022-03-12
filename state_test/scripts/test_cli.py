@@ -39,11 +39,13 @@ if __name__=='__main__':
     speak("Speeh setup")
     speak("Ready for commands")
     while True:
-        listen_for('come','come here','good','tomohawk')
-        
-
-        speak('I am coming Weeeeeeeee')
-        time.sleep(2)
+        w=listen_for('come','come here','good','tomohawk')
+        if 'come' in w:
+            #speak('Hello, I am Tomohawk')
+            speak('I am coming.')
+            time.sleep(2)
+        else:
+            pass
 
         speak(random.choice([
             'What would you like to drink?',
@@ -52,7 +54,6 @@ if __name__=='__main__':
         #I would like (coke,water,sprite)
         drink_name=listen_for('coke','water','sprite','cola','apple juice')
         speak(f'Ok,I will be back with the cup of {drink_name}.')
-        speak('E E EE E E EE E E')
         time.sleep(2)
 
 
@@ -61,5 +62,5 @@ if __name__=='__main__':
         listen_for('thank')
         speak('You are welcome.')
         time.sleep(1)
-        speak('I\'m getting back to origin position.')
-        speak('Weeeeeeeeee')
+        speak('I\'m getting back to my origin position.')
+        time.sleep(2)
