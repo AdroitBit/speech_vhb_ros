@@ -1,5 +1,5 @@
 <launch>
   <node name="tts_node" pkg="pocketsphinx_ros" type="tts_node.py" output='screen' />
   <node name="speech_recog_node" pkg="pocketsphinx_ros" type="speech_recog_node.py" output='screen'/>
-  <node name="state_test_node" pkg="state_test" type="test_cli.py" output='screen'/>
+  <node name="state_test_node" pkg="state_test" type="test_scenario.py" output='screen'/>
 </launch>

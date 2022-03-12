@@ -43,6 +43,6 @@ def start_recog_callback(req):
 
 if __name__=='__main__':
     rospy.init_node('speech_recog_node')
-    print("Test")
+    print("You can send request to recognizer/start for speech recognition start")
     s = rospy.Service('recognizer/start', SpeechRecog, start_recog_callback )
     rospy.spin()

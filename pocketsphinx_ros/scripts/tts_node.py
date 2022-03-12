@@ -55,6 +55,6 @@ def tts_callback(req):
 if __name__=='__main__':
     rospy.init_node('tts_node')
     s = rospy.Service('tts_input', TTS,tts_callback )
-    print("Send request to tts_output for text-to-speech activation.")
+    print("Send request to tts_input for text-to-speech activation.")
 
     rospy.spin()
