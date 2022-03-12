@@ -1,14 +1,9 @@
 # pocketsphinx-ros2
-Please read. I really put my soul into it.
+The pocketsphinx kinda not working well in ROS noetic because the ros noetic use multithread for service and client.
 
-This package also provided in noetic version. But It's quite tricky because It requires ros foxy version.
+And LiveSpeech() only work in main thread.
 
-The reason is that pocketsphinx can't work with ROS noetic. Because of the noetic used multi-thread for service and client.
-
-But pocketsphinx can't work in multi-thread.Due to signal module that they use.
-
-But then ROS foxy working fine.No problem.That is the workaround for us.
-
+Kinda workaround here.But I managed it to work.
 
 
 ## Dependencies
@@ -23,14 +18,6 @@ cd ~/ros_noetic_thing/pocketsphinx_ws/src
 git clone -b noetic-devel https://github.com/VeryHardBit/pocketsphinx-ros2
 cd ..
 catkin_make
-
-#You still need foxy version tho.
-source /opt/ros/foxy/setup.bash
-mkdir -p ~/ros_foxy_thing/pocketsphinx_ws/src
-cd ~/ros_foxy_thing/pocketsphinx_ws/src
-git clone -b foxy-devel https://github.com/VeryHardBit/pocketsphinx-ros2
-cd ..
-colcon build
 ```
 
 
@@ -49,27 +36,10 @@ colcon build
 ## Running (for speech recognition)
 
 ```
-#1st terminal
-$ source /opt/ros/foxy/setup.bash && \
-  source ~/ros_foxy_thing/pocketsphinx_ws/install/setup.bash && \
-  ros2 run pocketsphinx_ros speech_recog_srv
-
-#2nd terminal
 $ source /opt/ros/noetic/setup.bash && \
   source ~/ros_noetic_thing/pocketsphinx_ws/devel/setup.bash && \
   rosrun pocketsphinx_ros speech_recog_srv.py
 ```
-As mentioned in foxy version.
-
-That foxy's node can be requested by creating the "file".
-
-So That noetic's node will create that "file" whenever It's requested.
-
-This is how it works step by step.
-1. noetic node get requested by service name `recognizer/start`
-2. noetic node will create the file "/tmp/pocketsphinx_ros_starter.txt"
-3. foxy node always wait for that file.Meet that file.Then start speech recognition. Then send that output to other file "/tmp/pocketsphinx_ros_comm.txt"
-4. noetic node always wait for "/tmp/pocketsphinx_ros_comm.txt"
 
 ## Running (for tts)
 ```

@@ -8,7 +8,7 @@ from pocketsphinx import LiveSpeech
 import os
 import re
 
-scripts_path=os.path.dirname(__file__)
+scripts_dir=os.path.dirname(__file__)
 
 
 def map_phrase(s):
@@ -32,21 +32,10 @@ def map_phrase(s):
     return s
 
 def start_recog_callback(req):
+    global scripts_dir
     rospy.loginfo('Received request.Starting speech recognition....')
 
-    f_start=open('/tmp/pocketsphinx_ros_starter.txt','w')
-    f_start.write('EEEEEEEEEE')
-    f_start.close()
-
-    rate=rospy.Rate(10)
-    while os.path.exists("/tmp/pocketsphinx_ros_comm.txt")==False:
-        rate.sleep()
-
-    sentence=open("/tmp/pocketsphinx_ros_comm.txt","r").read()
-    #sentence=map_phrase(sentence)
-    os.remove("/tmp/pocketsphinx_ros_comm.txt")
-
-    
+    sentence=os.popen(f'python3 {scripts_dir}/_speech_recog_srv.py').read()
     rospy.loginfo(f'Response to client with "{sentence}"')
     return SpeechRecogResponse(sentence)
 
