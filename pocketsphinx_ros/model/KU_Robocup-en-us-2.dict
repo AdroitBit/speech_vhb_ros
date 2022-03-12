@@ -630,20 +630,6 @@ accouterments AH K UW T ER M AH N T S
 accoutrement AH K UW T ER M AH N T
 accoutrements AH K UW T ER M AH N T S
 accra AA K R AA
-accredit AH K R EH D AH T
-accreditation AH K R EH D AH T EY SH AH N
-accreditations AH K R EH D AH T EY SH AH N Z
-accredited AH K R EH D IH T IH D
-accrediting AH K R EH D AH T IH NG
-accreted AH K R IY T IH D
-accretion AH K R IY SH AH N
-accrual AH K R UW AH L
-accruals AH K R UW AH L Z
-accrue AH K R UW
-accrued AH K R UW D
-accrues AH K R UW Z
-accruing AH K R UW IH NG
-accu AE K Y UW
 accuhealth AE K Y UW HH EH L TH
 accumulate AH K Y UW M Y AH L EY T
 accumulated AH K Y UW M Y AH L EY T IH D
@@ -11423,12 +11409,8 @@ bielawski B IY L AA F S K IY
 bielby B IY L B IY
 bielecki B IY L EH T S K IY
 bielecki(2) B AY L EH K IY
-bernoulli B ER N UW L IY
-berns B ER N Z
-bernsen B ER N S AH N
-bernson B ER N S AH N
-bernstein B ER N S T AY N
-bernstein's B ER N S T IY N Z
+bielefeld B IY L IH F EH L D
+bielefeldt B IY L IH F IH L T
 bielen B IY L AH N
 bielenberg B IY L AH N B ER G
 bieler B IY L ER
@@ -113017,7 +112999,36 @@ something's S AH M TH IH NG Z
 somethings S AH M TH IH NG Z
 sometime S AH M T AY M
 sometimes S AH M T AY M Z
-somewhat S AH M W AH T
+
+speckled S P EH K AH L D
+speckman S P EH K M AH N
+specks S P EH K S
+specs S P EH K S
+spectacle S P EH K T AH K AH L
+spectacles S P EH K T AH K AH L Z
+spectacular S P EH K T AE K Y AH L ER
+spectacularly S P EH K T AE K Y AH L ER L IY
+spectator S P EH K T EY T ER
+spectators S P EH K T EY T ER Z
+specter S P EH K T ER
+specter's S P EH K T ER Z
+specthrie S P EH K TH R IY
+spector S P EH K T ER
+spectra S P EH K T R AH
+spectra's S P EH K T R AH Z
+spectradyne S P EH K T R AH D AY N
+spectral S P EH K T R AH L
+spectramed S P EH K T R AH M D
+spectramed(2) S P EH K T R AH M EH D
+spectran S P EH K T R AE N
+spectravision S P EH K T R AH V IH ZH AH N
+spectre S P EH K T ER
+spectrograph S P EH K T R AH G R AE F
+spectrometer S P EH K T R AA M AH T ER
+spectrometry S P EH K T R AA M AH T R IY
+spectroscopy S P EH K T R AA S K AH P IY
+spectrum S P EH K T R AH M
+spectrum's S P EH K T R AH M Zsomewhat S AH M W AH T
 somewhat(2) S AH M HH W AH T
 somewhere S AH M W EH R
 somewheres S AH M W EH R Z
@@ -113692,39 +113703,7 @@ specimens S P EH S AH M AH N Z
 specious S P IY SH AH S
 speck S P EH K
 specker S P EH K ER
-speckle S P EH K AH L
-speckled S P EH K AH L D
-speckman S P EH K M AH N
-specks S P EH K S
-specs S P EH K S
-spectacle S P EH K T AH K AH L
-spectacles S P EH K T AH K AH L Z
-spectacular S P EH K T AE K Y AH L ER
-spectacularly S P EH K T AE K Y AH L ER L IY
-spectator S P EH K T EY T ER
-spectators S P EH K T EY T ER Z
-specter S P EH K T ER
-specter's S P EH K T ER Z
-specthrie S P EH K TH R IY
-spector S P EH K T ER
-spectra S P EH K T R AH
-spectra's S P EH K T R AH Z
-spectradyne S P EH K T R AH D AY N
-spectral S P EH K T R AH L
-spectramed S P EH K T R AH M D
-spectramed(2) S P EH K T R AH M EH D
-spectran S P EH K T R AE N
-spectravision S P EH K T R AH V IH ZH AH N
-spectre S P EH K T ER
-spectrograph S P EH K T R AH G R AE F
-spectrometer S P EH K T R AA M AH T ER
-spectrometry S P EH K T R AA M AH T R IY
-spectroscopy S P EH K T R AA S K AH P IY
-spectrum S P EH K T R AH M
-spectrum's S P EH K T R AH M Z
-spectrums S P EH K T R AH M Z
-speculate S P EH K Y AH L EY T
-speculated S P EH K Y AH L EY T IH D
+speckle S P EH K AH L D
 speculates S P EH K Y AH L EY T S
 speculating S P EH K Y AH L EY T IH NG
 speculation S P EH K Y AH L EY SH AH N
@@ -120522,7 +120501,6 @@ thane TH EY N
 thang TH AE NG
 thanh TH AE N
 thank TH AE NG K
-thank-you TH AE NG K Y UW
 thank's TH AE NG K S
 thanked TH AE NG K T
 thankful TH AE NG K F AH L
@@ -121973,6 +121951,7 @@ tommy's T AA M IY Z
 tommy-lee T AA M IY L IY
 tomographic T OW M OW G R AE F IH K
 tomography T OW M OW G R AE F IY
+tomohawk T OW M HH AO K
 tomorrow T AH M AA R OW
 tomorrow's T AH M AA R OW Z
 tomorrow's(2) T UW M AA R OW Z
@@ -130478,32 +130457,6 @@ wharry W AE R IY
 wharry(2) HH W AE R IY
 wharton W AO R T AH N
 wharton's W AO R T AH N Z
-what W AH T
-what'd W AH T IH D
-what'd(2) HH W AH T IH D
-what'll W AH T AH L
-what'll(2) HH W AH T AH L
-what're W AH T ER
-what're(2) HH W AH T ER
-what's W AH T S
-what's(2) HH W AH T S
-what've W AH T AH V
-what(2) HH W AH T
-what-what W AH T W AH T
-whate W EY T
-whatever W AH T EH V ER
-whatever's W AH T EH V ER Z
-whatever's(2) HH W AH T EH V ER Z
-whatever(2) HH W AH T EH V ER
-whatley W AH T L IY
-whatley(2) HH W AH T L IY
-whatnot W AH T N AA T
-whatnot(2) HH W AH T N AA T
-whats W AH T S
-whats(2) HH W AH T S
-whatsapp W AH T S AA P
-whatsoever W AH T S OW EH V ER
-whatsoever(2) HH W AH T S OW EH V ER
 whay-yu W EY Y UW
 whay-yu(2) HH W EY Y UW
 wheat W IY T
@@ -132350,9 +132303,6 @@ womens' W IH M AH N Z
 womer W OW M ER
 wometco W OW M EH T K OW
 wommack W AA M AH K
-won W AH N
-won't W OW N T
-won(2) W AA N
 wond W AO N D
 wonda W AA N D AH
 wonder W AH N D ER

@@ -6,6 +6,7 @@ from pocketsphinx_ros.srv import SpeechRecog,SpeechRecogResponse
 from pocketsphinx_ros.srv import TTS,TTSResponse
 from std_msgs.msg import String
 import time
+import random
 
 def listen():
     rospy.wait_for_service('recognizer/start')
@@ -38,15 +39,18 @@ if __name__=='__main__':
     speak("Speeh setup")
     speak("Ready for commands")
     while True:
-        listen_for('come','come here','good')
+        listen_for('come','come here','good','tomohawk')
         
 
         speak('I am coming Weeeeeeeee')
         time.sleep(2)
 
-        speak('What would you like to drink?')
+        speak(random.choice([
+            'What would you like to drink?',
+            'Hello,What do you want to drink?'
+        ]))
         #I would like (coke,water,sprite)
-        drink_name=listen_for('coke','water','sprite','cola','beer')
+        drink_name=listen_for('coke','water','sprite','cola','apple juice')
         speak(f'Ok,I will be back with the cup of {drink_name}.')
         speak('E E EE E E EE E E')
         time.sleep(2)

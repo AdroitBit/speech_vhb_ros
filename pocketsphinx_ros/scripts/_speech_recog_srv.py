@@ -19,5 +19,8 @@ speech = LiveSpeech(
     dic=os.path.join(model_path, 'KU_Robocup-en-us.dict')
 )
 for phrase in speech:
-    print(phrase,end='')
+    if phrase=='':
+        print("Can't hear anything")
+    else:
+        print(phrase,end='') 
     break

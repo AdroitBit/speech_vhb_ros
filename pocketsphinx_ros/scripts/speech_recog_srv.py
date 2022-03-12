@@ -33,7 +33,7 @@ def map_phrase(s):
 
 def start_recog_callback(req):
     global scripts_dir
-    rospy.loginfo('Received request.Starting speech recognition....')
+    rospy.loginfo(f'Received request.Starting speech recognition.... : {req.keywords}')
 
     sentence=os.popen(f'python3 {scripts_dir}/_speech_recog_srv.py').read()
     rospy.loginfo(f'Response to client with "{sentence}"')
