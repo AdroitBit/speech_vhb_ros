@@ -5,24 +5,37 @@
 #Because in ros noetic there is a problem
 from pocketsphinx import LiveSpeech
 import os
+import signal
+
+def timeout_handler(signum, frame):
+   raise TimeoutError("end of time")
+
+signal.signal(signal.SIGALRM, timeout_handler)
+signal.alarm(10)
+
 
 scripts_dir=os.path.dirname(__file__)
 model_path=scripts_dir+'/../model'
-speech = LiveSpeech(
-    verbose=False,
-    sampling_rate=16000,
-    buffer_size=2048,
-    no_search=False,
-    full_utt=False,
-    hmm=os.path.join(model_path, 'en-us'),
-    lm=os.path.join(model_path, 'en-us.lm.bin'),
-    dic=os.path.join(model_path, 'KU_Robocup-en-us.dict')
-)
-for phrase in speech:
-    phrase=str(phrase)
-    if len(phrase)==0 or phrase=='':
-        phrase="null"
-        print(phrase)
-    else:
-        print(phrase,end='') 
-    break
+
+try:
+    speech=LiveSpeech(
+        verbose=False,
+        sampling_rate=16000,
+        buffer_size=2048,
+        no_search=False,
+        full_utt=False,
+        hmm=os.path.join(model_path, 'en-us'),
+        lm=os.path.join(model_path, 'en-us.lm.bin'),
+        dic=os.path.join(model_path, 'KU_Robocup-en-us.dict')
+    )
+    for phrase in speech:
+        phrase=str(phrase)
+        if len(phrase)==0 or phrase=='':
+            phrase="null"
+            print(phrase)
+        else:
+            print(phrase,end='')
+        break
+except TimeoutError as e:
+    if str(e)=='end of time':
+        print('null')
