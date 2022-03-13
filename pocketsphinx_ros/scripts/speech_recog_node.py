@@ -36,7 +36,7 @@ def start_recog_callback(req):
     rospy.loginfo(f'Received request.Starting speech recognition.... : {req.keywords}')
 
     sentence=os.popen(f'python3 {scripts_dir}/_speech_recog_srv.py').read()
-    rospy.loginfo(f'Response to client with "{sentence}"')
+    rospy.loginfo(f'Response to client with "{sentence}" , {len(sentence)}')
     return SpeechRecogResponse(sentence)
 
 
