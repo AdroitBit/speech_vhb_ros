@@ -4,9 +4,6 @@ import os
 from pocketsphinx import LiveSpeech
 import rospy
 from std_msgs.msg import String
-import pyttsx3
-#This is working badly
-#from playsound import playsound
 
 from pocketsphinx_ros.srv import TTS,TTSResponse
 
@@ -26,7 +23,6 @@ def perform_tts(msg,tts_type='pico2wave'):
     if tts_type=='espeak':
         os.system(f'espeak "{msg}" -s70 -v en-us')
     elif tts_type=='pico2wave':
-        
         ss=re.split('(\.|\,|\?)', msg)
         for s in ss:
             if s=='.':
