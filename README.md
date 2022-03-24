@@ -9,13 +9,13 @@ In serious of Working in Progress
 - pocketsphinx - 
     https://pypi.org/project/pocketsphinx/
     https://github.com/cmusphinx/pocketsphinx-python
-- pyttsx3 - https://pypi.org/project/pyttsx3/
+- pyttsx3 - https://pypi.org/project/pyttsx3/ #This will be removed from project
 - espeak - `$ sudo apt-get update && sudo apt-get install espeak`
 - rhvoice
 - festival - `$ sudo apt-get install festival`
 - pico2wave - `$ sudo apt-get install libttspico-utils`
 - sox - `$ sudo apt-get install sox`
-- playsound - https://pypi.org/project/playsound/
+- playsound - https://pypi.org/project/playsound/ #This will be removed from project
 
 
 
