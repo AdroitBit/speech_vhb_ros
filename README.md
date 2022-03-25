@@ -3,7 +3,7 @@
 
 
 ## Dependencies
-- Just consider it like foxy version's dependencies.
+- [pocketsphinx](https://pypi.org/project/pocketsphinx/ https://github.com/cmusphinx/pocketsphinx-python)
 
 
 ## Installation
