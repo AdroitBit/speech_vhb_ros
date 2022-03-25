@@ -6,6 +6,7 @@ from pocketsphinx import LiveSpeech
 import os
 import signal
 import rospkg
+import rospy
 rospack = rospkg.RosPack()
 #pocketsphinx model path
 model_path=rospack.get_path('speech_ros')+'/model'
@@ -23,8 +24,7 @@ def start_recog():
             full_utt=False,
             hmm=os.path.join(model_path, 'en-us'),
             lm=os.path.join(model_path, 'en-us.lm.bin'),
-            #dic=os.path.join(model_path, 'KU_Robocup-en-us.dict')
-            dic=os.path.join(model_path, 'movement-en-us.dict')
+            dic=os.path.join(model_path,rospy.get_param('dict', 'cmudict-en-us.dict'))
         )
         for phrase in speech:
             phrase=str(phrase)

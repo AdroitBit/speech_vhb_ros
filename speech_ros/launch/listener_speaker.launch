@@ -7,6 +7,10 @@
   <arg name="recog_engine" default="pocketsphinx" />
   <param name="recog_engine" value="$(arg recog_engine)"/>
 
+  <!--arg name="dict" default="cmudict-en-us.dict" /-->
+  <arg name="dict" default="KU_Robocup-en-us.dict" />
+  <param name="dict" value="$(arg dict)"/>
+
 
   <node name="tts_node"
     pkg="speech_ros"
@@ -15,6 +19,6 @@
     
   <node name="speech_recog_node"
     pkg="speech_ros"
-    type="pocketsphinx_recog_node.py"
+    type="recog_node.py"
     output='screen'/>
 </launch>
