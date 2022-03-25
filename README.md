@@ -40,14 +40,14 @@ catkin_make
 ```
 $ source /opt/ros/noetic/setup.bash && \
   source ~/ros_noetic_thing/pocketsphinx_ws/devel/setup.bash && \
-  rosrun pocketsphinx_ros speech_recog_node.py
+  rosrun speech_ros speech_recog_node.py
 ```
 
 ## Running (for tts)
 ```
 $ source /opt/ros/noetic/setup.bash && \
   source ~/ros_noetic_thing/pocketsphinx_ws/devel/setup.bash && \
-  rosrun pocketsphinx_ros tts_node.py
+  rosrun speech_ros tts_node.py
 ```
 
 ## State testing

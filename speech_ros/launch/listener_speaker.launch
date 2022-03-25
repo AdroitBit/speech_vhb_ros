@@ -1,4 +1,20 @@
 <launch>
-  <node name="tts_node" pkg="pocketsphinx_ros" type="tts_node.py" output='screen' />
-  <node name="speech_recog_node" pkg="pocketsphinx_ros" type="speech_recog_node.py" output='screen'/>
+  <!--This value can be one of these pico2wave,festival,espeak-->
+  <arg name="tts_type" default="pico2wave" />
+  <param name="tts_type" value="$(arg tts_type)"/>
+
+  <!--This value can be one of these pocketsphinx,...-->
+  <arg name="recog_engine" default="pocketsphinx" />
+  <param name="recog_engine" value="$(arg recog_engine)"/>
+
+
+  <node name="tts_node"
+    pkg="speech_ros"
+    type="tts_node.py"
+    output='screen'/>
+    
+  <node name="speech_recog_node"
+    pkg="speech_ros"
+    type="pocketsphinx_recog_node.py"
+    output='screen'/>
 </launch>

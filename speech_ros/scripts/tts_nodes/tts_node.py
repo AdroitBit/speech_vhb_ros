@@ -1,14 +1,13 @@
 #!/usr/bin/env python3
 
 import os
-from pocketsphinx import LiveSpeech
-import rospy
-from std_msgs.msg import String
-
-from pocketsphinx_ros.srv import TTS,TTSResponse
-
 import re
 import time
+
+import rospy
+from std_msgs.msg import String
+from speech_ros.srv import TTS,TTSResponse
+
 
 #playsound can be
 # $ ffplay -nodisp -autoexit -loglevel quiet /tmp/test.wav
@@ -45,7 +44,12 @@ def perform_tts(msg,tts_type='pico2wave'):
                 playsound(dir+fn)
 def tts_callback(req):
     rospy.loginfo(f'speaking "{req.sentence}"')
-    perform_tts(req.sentence,tts_type='pico2wave')
+    perform_tts(
+        req.sentence,
+        tts_type=rospy.get_param('tts_type', 'pico2wave')
+    )
+
+    
     return TTSResponse(True)
 
 if __name__=='__main__':
