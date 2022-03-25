@@ -6,6 +6,9 @@
 from pocketsphinx import LiveSpeech
 import os
 import signal
+import rospkg
+
+rospack = rospkg.RosPack()
 
 def timeout_handler(signum, frame):
    raise TimeoutError("end of time")
@@ -14,8 +17,7 @@ signal.signal(signal.SIGALRM, timeout_handler)
 signal.alarm(10)
 
 
-scripts_dir=os.path.dirname(__file__)
-model_path=scripts_dir+'/../model'
+model_path=rospack.get_path('speech_reos')+'/model'
 
 try:
     speech=LiveSpeech(
