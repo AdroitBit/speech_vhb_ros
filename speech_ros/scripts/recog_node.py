@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 import os
 import re
-from pocketsphinx import LiveSpeech
 import rospy
 import rospkg
 from speech_ros.srv import SpeechRecog,SpeechRecogResponse
@@ -17,7 +16,7 @@ def start_recog_callback(req):
     global scripts_dir
     rospy.loginfo(f'Received request.Starting speech recognition....')
 
-    sentence=os.popen(f'python3 {scripts_dir}/recog_nodes/_pocketsphinx_recog_node.py').read()
+    sentence=os.popen(f'python3 {scripts_dir}/_pocketsphinx_recog.py').read()
 
     rospy.loginfo(f'Response to client with "{sentence}" , {len(sentence)}')
     return SpeechRecogResponse(sentence)
