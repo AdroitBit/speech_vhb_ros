@@ -29,7 +29,7 @@ if __name__=='__main__':
     rospy.init_node('speech_cli_node')
     print('Ready')
     while True:
-        input('Waiting for enter')
+        # input('Waiting for enter')
         msg=listen()
         print(msg)
         speak(msg)

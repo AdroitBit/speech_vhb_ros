@@ -12,9 +12,20 @@ bottle B AA T AH L
 
 
 water W AO T ER
+water(2) W AO T ER
 coke K OW K
 sprite S P R AY T
+sprite(2) S P AY S
+sprite(3) S P AY S T
+sprite(4) S P R AY
+
+
 cola K OW L AH
+cola(2) K OW L AH
+cola(3) K OW L AH
+coca-cola K OW K AH K OW L AA
+cola(4) K OW L AA
+cola(5) K OW AA L AH
 
 hi HH AY ER
 hi(2) HH AY
@@ -43,6 +54,5 @@ please P L IY Z
 please(2) P L IY Z
 
 want W AA N T
-want(2) W AO N T
 
-ah AA
+#ah AA
