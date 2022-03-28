@@ -6,14 +6,10 @@ thank TH AE NG
 thank(2) TH AE NG
 you K Y UW
 
-bottle B AA T AH L
-
-
-
 
 water W AO T ER
-water(2) W AO T ER
-coke K OW K
+#originally coke
+cola K OW K
 sprite S P R AY T
 sprite(2) S P AY S
 sprite(3) S P AY S T
@@ -26,33 +22,41 @@ cola(3) K OW L AH
 coca-cola K OW K AH K OW L AA
 cola(4) K OW L AA
 cola(5) K OW AA L AH
-
-hi HH AY ER
-hi(2) HH AY
-hey HH EY
+cola(6) K OW L ER
 
 
 
-apple AE P AH L
-juice JH UW S
-apple(2) AE P AH L
-juice(2) JH UW S
 
-come K AH M
-come(2) K AH M
-come(3) K AH M
-come(4) K AH M
-come(5) K AH M
-
-come-here K AH M HH IY R
-
-
-here HH IY R
+#come K AH M
+#come(2) K AH M
+#come(3) K AH M
+#come(4) K AH M
+#come(5) K AH M
+#
+#come-here K AH M HH IY R
+#here HH IY R
 shit SH IH T
 
 please P L IY Z
 please(2) P L IY Z
 
+hi HH AY ER
+i AY
+i AY
+i AY
+hey HH EY
+
 want W AA N T
+want(2) W AH N T
+i-want AY W AA N T
+i-want AY W AA N T
+i-want AY W AA N T
+i-want AY W AA N T
+i-want AY W AA N T
+i-want AY W AA N T
+i-want AY W AA N T
+i-want AY W AA N T
+i-want AY W AA N T
+i-want AY W AA N T
 
 #ah AA
