@@ -2,8 +2,8 @@
 
 
 import rospy
-from pocketsphinx_ros.srv import SpeechRecog,SpeechRecogResponse
-from pocketsphinx_ros.srv import TTS,TTSResponse
+from speech_ros.srv import SpeechRecog,SpeechRecogResponse
+from speech_ros.srv import TTS,TTSResponse
 from std_msgs.msg import String
 import time
 import random
@@ -37,30 +37,12 @@ def listen_for(*words):
 
 if __name__=='__main__':
     rospy.init_node('speech_cli_node')
-    print("I am ready for the command.")
+    speak("I am ready for the command.")
     while True:
-        w=listen_for('come','here','good','tomohawk','hi','hey')
-        if 'come' in w:
-            #speak('Hello, I am Tomohawk')
-            speak('I am coming.')
-            time.sleep(2)
-        else:
-            pass
+        drink_name=listen_for('water','cola','sprite','coke')
 
-        speak(random.choice([
-            'What would you like to drink?',
-            'Hello,What do you want to drink?'
-        ]))
-        #I would like (coke,water,sprite)
-        drink_name=listen_for('coke','water','sprite','cola','apple juice')
-        speak(f'Ok,I will be back with the cup of {drink_name}.')
-        time.sleep(2)
-
-
-
+        speak(f'Please wait right there.I will be back with the bottle of {drink_name}')
+        time.sleep(1)
         speak('Here is your drink.')
         listen_for('thank')
         speak('You are welcome.')
-        time.sleep(1)
-        speak('I\'m getting back to my origin position.')
-        time.sleep(2)
