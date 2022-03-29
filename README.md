@@ -9,6 +9,14 @@ Give the ability to speak and understand speech to the Robot.
 - festival
 - pico2wave
 - aplay
+- SpeechRecognition
+- pyaudio
+```
+#If you're struggling in installing pyaudio.This is how I solve the problem.
+# Credit to https://stackoverflow.com/questions/20023131/cannot-install-pyaudio-gcc-error
+
+$ sudo apt-get install libasound-dev && cd ~/Downloads && curl -O http://files.portaudio.com/archives/pa_stable_v190700_20210406.tgz && tar -zxvf pa_stable_v190700_20210406.tgz && cd portaudio && ./configure && make && sudo make install && sudo pip install pyaudio && pip install SpeechRecognition
+```
 
 
 ### Installation
