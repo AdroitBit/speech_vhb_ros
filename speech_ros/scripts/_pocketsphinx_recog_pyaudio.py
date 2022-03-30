@@ -10,7 +10,7 @@ rospack = rospkg.RosPack()
 r=sr.Recognizer()
 with sr.Microphone() as source:
     print("Adjust ambient noise!")
-    r.adjust_for_ambient_noise(source, duration=5)
+    r.adjust_for_ambient_noise(source, duration=1)
     print("Say something!")
     audio=r.listen(source,phrase_time_limit=10)
 
@@ -18,6 +18,7 @@ with sr.Microphone() as source:
 
     f=open('/tmp/speech.raw','wb')
     f.write(audio)
+    f.close()
 
 #Detecting
 model_path=rospack.get_path('speech_ros')+'/model'
@@ -30,12 +31,16 @@ config = {
     'full_utt': False,
     'hmm': os.path.join(model_path, 'en-us'),
     'lm': os.path.join(model_path, 'en-us.lm.bin'),
-    #'dict': os.path.join(model_path, 'cmudict-en-us.dict')
     'dic': os.path.join(model_path, 'drink-en-us.dict')
 }
 audio = AudioFile(**config)
+phrase=''
 for phrase in audio:
     print(phrase)
+    f=open('/tmp/speech_recog_output.txt','w')
+    f.write(str(phrase))
+    f.close()
+
 
 
 #Way2
