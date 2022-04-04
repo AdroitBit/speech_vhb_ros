@@ -1,0 +1,27 @@
+#GPSR is general purpose service robot.So this fill will map sentence for something general
+cola :
+  - 'koala'
+  - 'holla'
+  - 'jolla'
+skyler :
+  - 'skylar'
+lead :
+  - 'lee'
+posing :
+  - 'posey'
+bring :
+  - 'bling'
+three snack :
+  - 'tree snack'
+corrider :
+  - 'collider'
+and find william :
+  - 'at 5 a.m.'
+'find the tray' :
+  - 'buy a tray'
+bookcase :
+  - 'bouquets'
+side table :
+  - 'sky temple'
+most object :
+  - 'more subject'

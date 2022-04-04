@@ -1,0 +1,7 @@
+goal : GPSR any commmands
+possibly watch this https://github.com/kyordhel/GPSRCmdGen
+That repo need this first https://www.mono-project.com/download/stable/#download-lin
+
+I can't install GPSR goddamn it
+
+https://github.com/reinzor/picovoice_ros
