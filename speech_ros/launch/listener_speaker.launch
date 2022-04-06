@@ -3,13 +3,29 @@
   <arg name="tts_type" default="pico2wave" />
   <param name="tts_type" value="$(arg tts_type)"/>
 
-  <!--This value can be one of these pocketsphinx,google,...-->
-  <arg name="recog_engine" default="pocketsphinx" />
-  <param name="recog_engine" value="$(arg recog_engine)"/>
+  <arg name="tts_srv_name" default="en-US" />
+  <param name="tts_srv_name" value="$(arg tts_srv_name)"/>
 
-  <arg name="dict" default="GPSR-en-us.dict"/>
+  <!--This value can be one of these google,vosk,pocketsphinx,...-->
+  <!--Pocketsphinx is the worst btw-->
+  <arg name="recog_engine" default="google" />
+  <param name="recog_engine" value="$(arg recog_engine)"/>
+  <arg name="recog_srv_name" default="/recognizer/start" />
+  <param name="recog_srv_name" value="$(arg recog_srv_name)"/>
+
+  <arg name="record_input" default="false"/>
+  <param name="record_input" value="$(arg record_input)"/>
+
+  <arg name="record_ext" default=".wav"/>
+  <param name="record_ext" value="$(arg record_ext)"/>
+
+  <arg name="vosk_model_name" default=""/>
+  <param name="vosk_model_name" value="$(arg vosk_model_name)"/>
+
+  <arg name="sphinx_dict" default="cmudict-en-us.dict"/>
   <!--arg name="dict" default="KU_Robocup-en-us.dict" /-->
-  <param name="dict" value="$(arg dict)"/>
+  <param name="sphinx_dict" value="$(arg sphinx_dict)"/>
+
 
 
   <node name="tts_node"

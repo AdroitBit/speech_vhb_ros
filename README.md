@@ -5,11 +5,14 @@ Give the ability to speak and understand speech to the Robot.
 
 ### Dependencies
 - [pocketsphinx](https://pypi.org/project/pocketsphinx/)
+- [vosk](https://pypi.org/project/vosk/)
 - espeak
 - festival
 - pico2wave
 - aplay
 - SpeechRecognition
+- [wget](https://pypi.org/project/wget/) : `$ pip install wget`
+- sphinxtrain (optional but required for model training) : `$ sudo apt install sphinxbase-utils sphinxtrain pocketsphinx`
 - pyaudio
 ```
 #If you're struggling in installing pyaudio.This is how I solve the problem.
@@ -36,7 +39,8 @@ listener_speaker.launch
       - default : pico2wave
       - the value can be pico2wave,festival,espeak
     - recog_engine
-      - default : pocketsphinx
+      - default : google
+      - the value can be google,vosk,pocketsphinx
     - dict
       - default : cmudict-en-us.dict
       - the value can also be `KU_Robocup-en-us.dict`,`movement-en-us.dict` observe in folder named model in speech_ros package

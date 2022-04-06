@@ -18,6 +18,10 @@ import time
 
 rospack=rospkg.RosPack()
     
+def str2bool(s):
+    if isinstance(s, bool):
+        return s
+    return s.lower() in ("true",) or bool(s) 
 
 class Recognizer_Node:
     def __init__(self):
@@ -33,7 +37,7 @@ class Recognizer_Node:
         rospy.logwarn('Adjusting listener for ambient noise...')
         with sr.Microphone() as source:
             self._listener.adjust_for_ambient_noise(source,duration=1)
-        self._listener.pause_threshold = 1.0
+        self._listener.pause_threshold = 0.8
         rospy.logwarn('Listener Adjusted')
         rospy.loginfo(f'Energy threshold => {self._listener.energy_threshold}')
         
@@ -47,6 +51,12 @@ class Recognizer_Node:
         self._sentence=''
 
         self._switch_recog_on=False
+
+        self.record_input=rospy.get_param('record_input','false')
+        self.record_input=str2bool(self.record_input)
+        self.record_ext=rospy.get_param('record_ext','.wav')
+        self.record_ext=self.record_ext.lower()
+
     def loop(self):
         rate=rospy.Rate(30)
         while True:#Use loop because I can't use decoder in service . I need to use service for activation to this loop that can use decoder!
@@ -103,7 +113,10 @@ class Recognizer_Node:
 
     def listen(self):
         with sr.Microphone() as source:
-            audio=self._listener.listen(source,timeout=10,phrase_time_limit=17)
+            audio=self._listener.listen(source,timeout=10,phrase_time_limit=15)
+        if self.record_input==True:
+            path=rospack.get_path('speech_ros')+'/recorded-audios'
+            self.save_audio(audio,path,self.record_ext)
         
         f=open('/tmp/speech.raw','wb')
         f.write(audio.get_raw_data(convert_rate=16000,convert_width=2))
@@ -115,14 +128,14 @@ class Recognizer_Node:
         return audio
 
     def decode_audio_file_to_text(self):
-        model_path=rospack.get_path('speech_ros')+'/model'
+        model_path=rospack.get_path('speech_ros')+'/models/GPSR'
         config = {
             'verbose': False,
             'audio_file': '/tmp/speech.raw',
             'buffer_size': 2048,
             'no_search': False,
             'full_utt': False,
-            'hmm': os.path.join(model_path, 'en-us'),
+            'hmm': os.path.join(model_path, 'en-us-GPSR'),
             'lm': os.path.join(model_path, 'en-us.lm.bin'),
             'dic': os.path.join(model_path, rospy.get_param('dict', 'cmudict-en-us.dict'))
         }
@@ -143,7 +156,21 @@ class Recognizer_Node:
             for ai in a:
                 s=s.replace(ai,b)
         return s
-    
+    def save_audio(self,audio,path,ext):
+        audios_fn = [int(f[0:-len(ext)]) for f in os.listdir(path) if f.endswith(ext)]
+
+        audio_next_fn=1 if len(audios_fn)==0 else max(audios_fn)+1
+        audio_next_fn=str(audio_next_fn).zfill(0)+ext
+
+        path=path+'/'+audio_next_fn
+        f=open(path,'wb')
+        rospy.loginfo(f'Saving audio to {path}')
+        if self.record_ext=='.wav':
+            f.write(audio.get_wav_data(convert_rate=16000,convert_width=2))
+            f.close()
+        if self.record_ext=='.raw':
+            f.write(audio.get_raw_data(convert_rate=16000,convert_width=2))
+            f.close()
 
 if __name__=='__main__':
     rospy.init_node('speech_recog_node')
