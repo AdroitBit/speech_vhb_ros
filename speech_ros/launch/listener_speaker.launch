@@ -3,15 +3,18 @@
   <arg name="tts_type" default="pico2wave" />
   <param name="tts_type" value="$(arg tts_type)"/>
 
-  <arg name="tts_srv_name" default="en-US" />
+  <arg name="tts_srv_name" default="/tts_input" />
   <param name="tts_srv_name" value="$(arg tts_srv_name)"/>
+  
+  <arg name="recog_srv_name" default="/recognizer/start" />
+  <param name="recog_srv_name" value="$(arg recog_srv_name)"/>
 
   <!--This value can be one of these google,vosk,pocketsphinx,...-->
   <!--Pocketsphinx is the worst btw-->
-  <arg name="recog_engine" default="google" />
+  <arg name="mic_engine" default="pyaudio" />
+  <param name="mic_engine" value="$(arg mic_engine)"/>
+  <arg name="recog_engine" default="vosk" />
   <param name="recog_engine" value="$(arg recog_engine)"/>
-  <arg name="recog_srv_name" default="/recognizer/start" />
-  <param name="recog_srv_name" value="$(arg recog_srv_name)"/>
 
   <arg name="record_input" default="false"/>
   <param name="record_input" value="$(arg record_input)"/>
@@ -19,7 +22,7 @@
   <arg name="record_ext" default=".wav"/>
   <param name="record_ext" value="$(arg record_ext)"/>
 
-  <arg name="vosk_model_name" default=""/>
+  <arg name="vosk_model_name" default="vosk-model-en-us-0.22"/>
   <param name="vosk_model_name" value="$(arg vosk_model_name)"/>
 
   <arg name="sphinx_dict" default="cmudict-en-us.dict"/>

@@ -29,6 +29,7 @@ if __name__=='__main__':
     rospy.init_node('speech_cli_node')
     print('Ready')
     while True:
+        print("This should sent request")
         msg=listen()
         print(msg)
         speak(msg)

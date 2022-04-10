@@ -48,6 +48,8 @@ listener_speaker.launch
 ```
 $ roslaunch speech_ros listener_speaker.launch
 
+$ roslaunch speech_ros listener_speaker.launch recog_engine:=vosk vosk_model_name:=vosk-model-en-us-0.22
+
 $ roslaunch speech_ros listener_speaker.launch tts_type:=espeak
 
 $ roslaunch speech_ros listener_speaker.launch dict:=KU_Robocup-en-us.dict

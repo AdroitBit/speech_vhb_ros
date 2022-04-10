@@ -2,18 +2,17 @@ import os
 import re
 import yaml
 import json
+import time
 import pyaudio
 import rospy
 import rospkg
-
 rospack = rospkg.RosPack()  
 from speech_ros.srv import SpeechRecog,SpeechRecogResponse
 from std_msgs.msg import Empty
 from std_msgs.msg import String
 
 import speech_recognition as sr
-from vosk import Model,KaldiRecognizer
-import os
+import vosk
 import signal
 import time
 import statistics
@@ -23,7 +22,7 @@ import statistics
 def str2bool(s):
     if isinstance(s, bool):
         return s
-    return s.lower() in ("true",) or bool(s)  
+    return s.lower() in ("true",) or bool(s)
 class Recognizer_Node:
     def __init__(self):
         rospy.init_node('speech_recog_node')
@@ -35,12 +34,23 @@ class Recognizer_Node:
         model_name=rospy.get_param('vosk_model_name')
 
         rospy.logwarn(f'Using model from {model_path}{model_name}')
-        
+        self.model=self.load_model(model_path+model_name)
+        self.listener=self.create_listener()
+
+        self.record_input=rospy.get_param('record_input','false')
+        self.record_input=str2bool(self.record_input)
+        self.record_ext=rospy.get_param('record_ext','.wav')
+        self.record_ext=self.record_ext.lower()
+
+        rospy.logwarn('Finish setting up')
+        self._ready=True
+    def load_model(self,model_path):
         try:
-            rospy.logwarn('Setting up Model object')
-            self.model=Model(model_path+model_name)#Read the model
-            rospy.logwarn('Setting up Recognizer')
-            self.recognizer=KaldiRecognizer(self.model,16000)#Create the recognizer
+            rospy.logwarn('Setting up Model object.Please wait....')
+            model=vosk.Model(model_path)#Read the model
+            rospy.logwarn('Test setup Recognizer')
+            vosk.KaldiRecognizer(model,16000)#Create the recognizer
+            return model
         except Exception as e:
             if 'Failed to create a model' in str(e):
                 if not os.path.exists(model_path):
@@ -55,14 +65,14 @@ class Recognizer_Node:
             else:
                 rospy.logerr(e)
                 exit(1)
-        self.record_input=rospy.get_param('record_input','false')
-        self.record_input=str2bool(self.record_input)
-        self.record_ext=rospy.get_param('record_ext','.wav')
-        self.record_ext=self.record_ext.lower()
-
-        rospy.logwarn('Finish setting up')
-        self._ready=True
-            
+    def create_listener(self):
+        listener=sr.Recognizer()
+        print('Adjusting listener for ambient noise...')
+        with sr.Microphone() as source:
+            listener.adjust_for_ambient_noise(source,duration=1)
+        listener.pause_threshold = 0.8
+        print('Listener Adjusted')
+        print(f'Energy threshold => {listener.energy_threshold}')
     def start_recog_callback(self,req):
         rate=rospy.Rate(30)
         while self._ready==False:
@@ -100,16 +110,26 @@ class Recognizer_Node:
             f.write(audio.get_raw_data(convert_rate=16000,convert_width=2))
             f.close()
     def listen(self):
-        cap=pyaudio.PyAudio()
-        stream=cap.open(format=pyaudio.paInt16,channels=1,rate=16000,input=True,frames_per_buffer=1024)
-        stream.start_stream()
-        while True:
-            data=stream.read(4096)
-            if self.recognizer.AcceptWaveform(data):
-               s=self.recognizer.Result()
-               #print(type(s))
-               stream.stop_stream()
-               return json.loads(s)['text']
+        rospy.loginfo('Listening...')
+        with sr.Microphone() as source:
+            audio = sr.Recognizer().listen(source)
+
+        data=audio.get_wav_data(convert_rate=16000,convert_width=2)
+        f=open('/tmp/speech.wav','wb')
+        f.write(data)
+        f.close()
+        if self.record_input==True:
+            path=rospack.get_path('speech_ros')+'/recorded-audios'
+            self.save_audio(audio,path,self.record_ext)
+
+        rospy.loginfo('Recognizing...')
+        rec=vosk.KaldiRecognizer(self.model,16000)
+        rec.AcceptWaveform(data)
+        sentence=json.loads(rec.Result())['text']
+
+        return sentence
+        
+
 
 if __name__=='__main__':
     rospy.init_node('speech_recog_node')
