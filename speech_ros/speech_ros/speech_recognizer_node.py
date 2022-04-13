@@ -1,16 +1,12 @@
 import os
-from pocketsphinx import LiveSpeech
+import re
+import threading
+
 import rclpy
 from rclpy.node import Node
 from std_msgs.msg import String
 from std_msgs.msg import Empty
-import pyttsx3  
-from playsound import playsound
 from ament_index_python.packages import get_package_share_directory
-import re
-
-from pocketsphinx_ros_interfaces.srv import SpeechRecog
-import threading
 from speech_ros_interfaces.srv import SpeechRecog
 
 pkg_dir=get_package_share_directory('speech_ros')
@@ -42,9 +38,7 @@ class VOSK_Recognizer():
             for ai in a:
                 s=s.replace(ai,b)
         return s
-
-
-    def listen_to_text(self):#return binary wav data
+    def listen(self):#return binary wav data
         rospy.loginfo('Listening...')
         with sr.Microphone() as source:
             audio = self.listener.listen(source)
@@ -61,11 +55,14 @@ class VOSK_Recognizer():
         self.recognizer.AcceptWaveform(data)
         sentence=json.loads(self.recognizer.Result())['text']
         return sentence
+#class Google_Recognizer():
+
         
 
 
 class PocketSphinx_Recognizer():
-    def __init__(self,wtf=False):#setup function
+    def __init__(self,wtf=False):#WIP likely to be removed
+        from pocketsphinx import LiveSpeech
         model_path=get_package_share_directory('pocketsphinx_ros')+'/model'
         speech = LiveSpeech(
             verbose=False,
@@ -89,17 +86,27 @@ class SpeechRecognizerNode(Node):
         super().__init__('speech_recognizer_node')
         #self.srv_start= self.create_service(SpeechRecog, 'recognizer/start',self.srv_recog_callback)
         #self.sub_start=self.create_subscription(Empty, 'recognizer/foxy/start',self.sub_recog_callback,10)
+        
+        self.declare_parameter(
+            namespace='',
+            parameters=[
+                ('recog_engine','vosk')
+            ]
+        )
+
+        if str(self.get_parameter('recog_engine').value)=='vosk':
+            self.recognizer=VOSK_Recognizer()
         self.recognizer_srv= self.create_service(SpeechRecog, '/<ns>/speech/speak',self.srv_recog_callback)
-        if 
     def srv_recog_callback(self,req):
         rospy.loginfo('Recognizing...')
-        self.recognizer_srv.call(req)
-        return True
+
+        return self.recognizer.listen()
 
 
 def main(args=None):
     rclpy.init(args=args)
     node = SpeechRecognizerNode()
+    print("Send request to .... for speech recognition activation.")
     rclpy.spin(node)
     node.destroy_node()
     rclpy.shutdown()
