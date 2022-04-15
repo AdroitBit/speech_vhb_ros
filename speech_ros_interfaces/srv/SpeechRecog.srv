@@ -1,0 +1,4 @@
+string sentence
+float32 timeout #(if -1 timeout.timeout is disabled)
+---
+bool success

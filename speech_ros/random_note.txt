@@ -1,0 +1,7 @@
+tell Pat about confusing service name
+because It should be /<ns>/speech/listen/spot
+for normal listen.It should /<ns>/speech/listen/all
+
+
+
+This shit is tester https://gitlab.com/robotcitizens/skuba-ahr-project/software-team/skuba_ahr_test/-/tree/world2022

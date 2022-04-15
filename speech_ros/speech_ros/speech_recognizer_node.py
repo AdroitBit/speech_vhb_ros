@@ -16,12 +16,12 @@ class VOSK_Recognizer():
         from vosk import Model, KaldiRecognizer
         import speech_recognition as sr #use as a micrphone listener since This module doesn't have vosk yet
 
-        self.model = Model(get_package_share_directory('pocketsphinx_ros')+'/model/en-us/en-us')
+        self.model = Model(pkg_dir+'/models')
         self.recognizer = KaldiRecognizer(self.model)
 
         #create listener using speech_recognition
         listener=sr.Recognizer()
-        print('Adjusting listener for ambient noise...')
+        print('Adjusting listener for ambient noise,Please be quiet...')
         with sr.Microphone() as source:
             listener.adjust_for_ambient_noise(source,duration=1)
         listener.pause_threshold = 0.8
@@ -38,7 +38,7 @@ class VOSK_Recognizer():
             for ai in a:
                 s=s.replace(ai,b)
         return s
-    def listen(self):#return binary wav data
+    def listen_all(self):
         rospy.loginfo('Listening...')
         with sr.Microphone() as source:
             audio = self.listener.listen(source)
@@ -55,11 +55,28 @@ class VOSK_Recognizer():
         self.recognizer.AcceptWaveform(data)
         sentence=json.loads(self.recognizer.Result())['text']
         return sentence
+    def listen_spot(self,keyword,timeout=-1):
+        import pyaudio
+        from vosk import Model, KaldiRecognizer
+
+        cap=pyaudio.Pyaudio()
+        stream=cap.open(format=pyaudio.paInt16,channels=1,rate=16000,input=True,frames_per_buffer=1024)
+        stream.start_stream()
+
+        while True:
+            data=stream.read(1024*4)
+
+            #if len(data)==0:
+            #    break
+            if recognizer.AcceptWaveform(data):
+                
+                if keyword in sentence:
+                    break
+
+                print('Recognized:',recognizer.Result())
+        sentence=json.loads(self.recognizer.FinalResult())['text']
+        return sentence
 #class Google_Recognizer():
-
-        
-
-
 class PocketSphinx_Recognizer():
     def __init__(self,wtf=False):#WIP likely to be removed
         from pocketsphinx import LiveSpeech
@@ -79,28 +96,42 @@ class PocketSphinx_Recognizer():
             #return map_phrase(str(phrase)) 
             return str(phrase)
 
-
-
+def apply_namespace(s,ns):
+    if ns=='':
+        return s
+    else:
+        return ns+'/'+s
 class SpeechRecognizerNode(Node):
     def __init__(self):
         super().__init__('speech_recognizer_node')
         #self.srv_start= self.create_service(SpeechRecog, 'recognizer/start',self.srv_recog_callback)
         #self.sub_start=self.create_subscription(Empty, 'recognizer/foxy/start',self.sub_recog_callback,10)
+        print("Namespace of recognizer is",self.get_namespace())
         
-        self.declare_parameter(
+        self.declare_parameters(
             namespace='',
             parameters=[
                 ('recog_engine','vosk')
             ]
         )
+        ns=self.get_namespace()
 
         if str(self.get_parameter('recog_engine').value)=='vosk':
             self.recognizer=VOSK_Recognizer()
-        self.recognizer_srv= self.create_service(SpeechRecog, '/<ns>/speech/speak',self.srv_recog_callback)
+        self.recognizer_all_srv
+        apply_namespace('speech/listen/all',ns)
+        self.recognizer_all_srv= self.create_service(SpeechRecogAll,apply_namespace('speech/listen/all',ns),self.srv_recog_all_callback)
+        self.recognizer_spot_srv= self.create_service(SpeechRecogSpot, apply_namespace('speech/listen/spot',ns),self.srv_recog_spot_callback)
+        self.recognizer_srv= self.create_service(SpeechRecogSpot, apply_namespace('speech/listen',ns),self.srv_recog_callback)#This is using for Robocup contest.Don't use it yet.This is confusing
     def srv_recog_callback(self,req):
         rospy.loginfo('Recognizing...')
 
-        return self.recognizer.listen()
+        return self.recognizer.listen_spot(keyword=req.sentence,timeout=req.timeout)
+    #def srv_recog_all_callback(self,req):
+    #    rospy.loginfo('Recognizing...')
+    #    return self.recognizer.listen()
+    #def srv_recog_spot_callback(self,req):
+
 
 
 def main(args=None):

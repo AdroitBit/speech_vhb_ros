@@ -1,6 +1,6 @@
 from launch import LaunchDescription
 from launch_ros.actions import Node
-from launch_ros.actions import DeclareLaunchArgument
+from launch.actions import DeclareLaunchArgument
 
 def generate_launch_description():
     return LaunchDescription([
@@ -28,14 +28,17 @@ def generate_launch_description():
         DeclareLaunchArgument(name='namespace', default_value='GPSR'),
         DeclareLaunchArgument(name='recog_engine', default_value='vosk'),
         DeclareLaunchArgument(name='vosk_model', default_value='en-us'),
+        #Node(
+        #    package='speech_ros',
+        #    namespace='nigga',
+        #    executable='speech_recognizer_node',
+        #    parameters=[
+        #        {'recog_engine':'vosk'}
+        #    ]
+        #),
         Node(
             package='speech_ros',
-            namespace='<ns>',
-            executable='speech_recognizer_node'
-        ),
-        Node(
-            package='speech_ros',
-            namespace='<ns>',
+            namespace='',
             executable='tts_node'
         )
     ])
