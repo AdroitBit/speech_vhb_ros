@@ -20,4 +20,6 @@ self.get_service_names_and_types()
 service can
 self.srv.srv_name
 
+self.get_logger().info(f"{self.get_service_names_and_types_by_node('listen_node','')}")
+
 This might be the answer to know where your service mapped into
