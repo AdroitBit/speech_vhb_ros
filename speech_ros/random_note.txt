@@ -12,3 +12,12 @@ ros2 launch speech_ros listener_node listener_model_name:=vosk-small-en-us
 
 If there are multiple models found then You should specify model_name argument.
 Or  it will stop or choose model automatically?
+
+
+node can do
+self.get_service_names_and_types()
+
+service can
+self.srv.srv_name
+
+This might be the answer to know where your service mapped into
