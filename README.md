@@ -4,7 +4,8 @@
 - vosk [pypi](https://pypi.org/project/vosk/) [model download](https://alphacephei.com/vosk/models)
 - espeak
 - festival
-- pico2wave
-- aplay
+- pico2wave - `sudo apt-get install libttspico-utils`
+- aplay - `sudo apt-get install alsa-utils`
+- pyaudio - [stackoverflow](https://stackoverflow.com/a/35593426/9241531)(There is installation problem on ubuntu)
 - SpeechRecognition
-- pyaudio - [link1](https://stackoverflow.com/a/35593426/9241531)(There is installation problem on ubuntu)
+
