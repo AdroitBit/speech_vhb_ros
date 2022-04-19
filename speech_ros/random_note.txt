@@ -12,6 +12,9 @@ ros2 launch speech_ros listener_node listener_model_name:=vosk-small-en-us
 
 If there are multiple models found then You should specify model_name argument.
 Or  it will stop or choose model automatically?
+Or maybe just
+ros2 run speech_ros listener_node model_loc:=~/Downloads/vosk...
+Kinda much easier
 
 
 node can do
