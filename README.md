@@ -7,4 +7,4 @@
 - pico2wave
 - aplay
 - SpeechRecognition
-- pyaudio - [link1](https://stackoverflow.com/a/35593426/9241531)
+- pyaudio - [link1](https://stackoverflow.com/a/35593426/9241531)(There is installation problem on ubuntu)
