@@ -10,6 +10,5 @@ Link can be provided but link should refer to .zip file
 ros2 run speech_ros listener_node model_name:=vosk-small-en-us-...
 ros2 launch speech_ros listener_node listener_model_name:=vosk-small-en-us
 
-model_name must be provided when you import the multiple models. if none vosk-small-en-us will be chosen.As it is default model
-
-Or maybe choose model automatically?
+If there are multiple models found then You should specify model_name argument.
+Or  it will stop or choose model automatically?
