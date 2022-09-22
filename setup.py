@@ -1,7 +1,6 @@
 from setuptools import setup
-from glob import glob
 
-package_name = 'speech_ros'
+package_name = 'speech_vhb_ros'
 
 setup(
     name=package_name,
@@ -11,19 +10,17 @@ setup(
         ('share/ament_index/resource_index/packages',
             ['resource/' + package_name]),
         ('share/' + package_name, ['package.xml']),
-        ('share/'+package_name, glob('launch/*.launch.py'))
     ],
     install_requires=['setuptools'],
     zip_safe=True,
     maintainer='veryhardbit',
-    maintainer_email='yanothaic15@gmail.com',
+    maintainer_email='yanothaic8@gmaill.com',
     description='TODO: Package description',
     license='TODO: License declaration',
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            'speech_recognizer_node=speech_ros.speech_recognizer_node:main',
-            'tts_node=speech_ros.tts_node:main'
+            'my_node = speech_vhb_ros.my_node:main'
         ],
     },
 )

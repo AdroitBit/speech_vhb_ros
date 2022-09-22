@@ -1,4 +1,5 @@
-# speech-ros2
+# veryhardbit-speech-ros
+The speech recognition ROS package that can both listen and speak.
 ## Dependencies
 - pocketsphinx - [pypi](https://pypi.org/project/pocketsphinx/)
 - vosk [pypi](https://pypi.org/project/vosk/) [model download](https://alphacephei.com/vosk/models)

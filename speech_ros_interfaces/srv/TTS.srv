@@ -1,4 +1,0 @@
-string sentence
-bool wait_for_success
----
-bool success

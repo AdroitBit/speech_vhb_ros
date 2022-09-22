@@ -1,7 +1,0 @@
-#This is for listen spot mode
-
-string sentence
-float32 timeout
----
-string actual_sentence
-bool success
