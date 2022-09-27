@@ -3,6 +3,7 @@ import re
 import threading
 import time
 import subprocess
+import sys
 
 
 import rclpy
@@ -10,6 +11,13 @@ from rclpy.node import Node
 from std_msgs.msg import String
 from vhb_ros_interfaces.srv import SpeakCommand
 
+def ros_ver():
+    if "rospy" in sys.modules:
+        return 1
+    elif "rclpy" in sys.modules:
+        return 2
+    else:
+        return 0
 class pico2wave_Engine():
     def __init__(self):
         pass
@@ -28,8 +36,8 @@ class pico2wave_Engine():
             subprocess.Popen(' && '.join(cmds),shell=True)
 class SpeakerNode(Node):
     def __init__(self):
-        rospy.init_node('speaker_node')
-        self.srv=rospy.Service('/speech/speak',SpeakCommand,self.srv_callback)
+        self.init_node('speaker_node')
+        self.srv=self.create_ros_srv('/speech/speak',SpeakCommand,self.srv_callback)
         self.tts_engine=pico2wave_Engine()
         self.log_info(f"Speaker node ready to be requested.")
     def srv_callback(self,req):
@@ -41,13 +49,40 @@ class SpeakerNode(Node):
             self.log_error(f'failed to speak "{req.sentence}"')
             self.log_error(e)
             return SpeakCommandResponse(False)
+    def create_ros_srv(self,service_name,service_type,service_callback):
+        try:
+            return rospy.Service(service_name,service_type,service_callback)
+        except:
+            return self.create_service(service_name,service_type,service_callback)
 
-    def log_info(self,msg): 
-        rospy.loginfo(msg)
+    def log_info(self,msg):
+        try:
+            rospy.loginfo(msg)
+        except:
+            self.get_logger().info(msg)
     def log_error(self,msg):
-        rospy.logerr(msg)
+        try:
+            rospy.logerr(msg)
+        except:
+            self.get_logger().error(msg)
+    def init_node(self,name):
+        try:
+            rospy.init_node(name)
+        except:
+            super().__init__(name)
+    def spin(self):
+        try:
+            rospy.spin()
+        except:
+            rclpy.spin(self)
+    def shutdown(self):
+        try:
+            rospy.shutdown()
+        except:
+            rclpy.shutdown()
 def main():
     node=SpeakerNode()
-    rospy.spin()
+    node.spin()
+    node.shutdown()
 if __name__ == '__main__':
     main()
