@@ -20,7 +20,9 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            'my_node = speech_vhb_ros.my_node:main'
+            'my_node = speech_vhb_ros.my_node:main',
+            'speaker_node = speech_vhb_ros.speaker_node:main',
+            'listener_node = speech_vhb_ros.listener_node:main',
         ],
     },
 )

@@ -1,2 +1,2 @@
 # speech_vhb_ros
-The speech recognition ROS package that can be both listener and speaker.
+The ROS speech processing package that can be both listener and speaker.
